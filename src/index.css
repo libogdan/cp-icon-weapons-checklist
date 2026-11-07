@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Color tokens: light by default, dark via OS setting. */
+:root {
+  color-scheme: light;
+  --bg: #e7e5ef;
+  --surface: #ffffff;
+  --text: #1a1630;
+  --muted: #5d5779;
+  --line: #cfcbe0;
+  --cyan: #007c89;
+  --cyan-soft: rgb(0 124 137 / 0.1);
+  --red: #c4183a;
+  --chip: #f3f2f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #1a1630;
+    --surface: #231e3d;
+    --text: #ece9f7;
+    --muted: #a39cc2;
+    --line: #3a3360;
+    --cyan: #3ff0ff;
+    --cyan-soft: rgb(63 240 255 / 0.09);
+    --red: #ff5a74;
+    --chip: #2b2549;
+  }
+}
+
+/* Expose tokens as Tailwind utilities: bg-surface, text-muted, border-line, etc. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-cyan: var(--cyan);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-red: var(--red);
+  --color-chip: var(--chip);
+  --color-yellow: #fcee0a;
+  --font-display: "Rajdhani", "Barlow", system-ui, sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-padding-top: 140px;
+}
+body {
+  @apply bg-bg text-text font-body antialiased;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* Cyberpunk-style cut corners */
+.clip-hero {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
+}
+.clip-box {
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
