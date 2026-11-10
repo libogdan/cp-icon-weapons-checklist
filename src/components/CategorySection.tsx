@@ -18,7 +18,7 @@ export function CategorySection({ category, visible, owned, onToggle }: Category
           {have} of {category.weapons.length}
         </small>
       </h2>
-      <ul className="border border-line bg-surface">
+      <ul className="grid gap-px border border-line bg-line lg:grid-cols-2 lg:[&>li:last-child:nth-child(odd)]:col-span-2">
         {visible.map((w) => (
           <WeaponRow key={w.id} weapon={w} checked={owned.has(w.id)} onToggle={onToggle} />
         ))}

@@ -45,7 +45,31 @@
 }
 
 html {
-  scroll-padding-top: 140px;
+  scroll-padding-top: 64px; /* phones: only the class nav is sticky */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 150px; /* full toolbar is sticky */
+  }
+}
+button,
+label,
+a {
+  touch-action: manipulation;
+}
+/* Side gutters that also clear landscape notches. */
+.app-shell {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 768px) {
+  .app-shell {
+    padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  }
 }
 body {
   @apply bg-bg text-text font-body antialiased;

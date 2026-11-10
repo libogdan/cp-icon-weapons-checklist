@@ -31,7 +31,7 @@ export default function App() {
   );
 
   return (
-    <div className="mx-auto max-w-[860px] px-4">
+    <div className="app-shell mx-auto max-w-[860px] lg:max-w-[1120px]">
       <Hero categories={CATEGORIES} owned={owned} total={ALL_WEAPONS.length} />
       <Toolbar
         query={query}
