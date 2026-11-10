@@ -28,24 +28,26 @@ interface ToolbarProps {
 
 export function Toolbar({ query, onQuery, status, onStatus, source, onSource, categories, owned }: ToolbarProps) {
   return (
-    <div className="sticky top-[env(safe-area-inset-top,0px)] z-10 border-b border-line bg-bg pt-3 pb-2.5">
-      <div className="flex flex-wrap gap-2">
+    // Phones: search/filters scroll away (display: contents) and only the class nav sticks.
+    // Tablet and up: the whole toolbar is sticky.
+    <div className="contents md:sticky md:top-[env(safe-area-inset-top,0px)] md:z-10 md:block md:border-b md:border-line md:bg-bg md:pt-3 md:pb-2.5">
+      <div className="mt-3 flex flex-wrap gap-2 md:mt-0">
         <input
           type="search"
           value={query}
           onChange={(e) => onQuery(e.target.value)}
           placeholder="Search weapon, quest or place"
           aria-label="Search"
-          className="min-w-0 flex-[1_1_220px] rounded-sm border border-line bg-surface px-3 py-2.5"
+          className="min-w-0 flex-[1_1_220px] rounded-sm border border-line bg-surface px-3 py-3 md:py-2.5"
         />
-        <div role="group" aria-label="Show" className="flex border border-line bg-surface">
+        <div role="group" aria-label="Show" className="flex w-full border border-line bg-surface md:w-auto">
           {STATUS.map((s) => (
             <button
               key={s.value}
               type="button"
               aria-pressed={status === s.value}
               onClick={() => onStatus(s.value)}
-              className="cursor-pointer px-3 py-2 font-semibold aria-pressed:bg-text aria-pressed:text-bg"
+              className="min-h-11 flex-1 cursor-pointer px-3 py-2 font-semibold aria-pressed:bg-text aria-pressed:text-bg md:min-h-0 md:flex-none"
             >
               {s.label}
             </button>
@@ -53,21 +55,24 @@ export function Toolbar({ query, onQuery, status, onStatus, source, onSource, ca
         </div>
       </div>
 
-      <div role="group" aria-label="Filter by source" className="no-scrollbar mt-2 flex gap-1.5 overflow-x-auto pb-0.5">
+      <div role="group" aria-label="Filter by source" className="no-scrollbar -mx-4 mt-2 flex gap-1.5 overflow-x-auto px-4 pb-0.5 md:mx-0 md:px-0">
         {SOURCES.map((s) => (
           <button
             key={s.value}
             type="button"
             aria-pressed={source === s.value}
             onClick={() => onSource(s.value)}
-            className="flex-none cursor-pointer rounded-sm border border-line bg-chip px-2.5 py-1 text-sm font-medium whitespace-nowrap aria-pressed:border-cyan aria-pressed:bg-cyan-soft aria-pressed:text-cyan"
+            className="min-h-9 flex-none cursor-pointer rounded-sm border border-line bg-chip px-3 py-1 text-sm md:min-h-0 md:px-2.5 font-medium whitespace-nowrap aria-pressed:border-cyan aria-pressed:bg-cyan-soft aria-pressed:text-cyan"
           >
             {s.label}
           </button>
         ))}
       </div>
 
-      <nav aria-label="Weapon classes" className="no-scrollbar mt-2 flex gap-1.5 overflow-x-auto">
+      <nav
+        aria-label="Weapon classes"
+        className="no-scrollbar sticky top-[env(safe-area-inset-top,0px)] z-10 mt-2 -mx-4 flex gap-1.5 overflow-x-auto border-b border-line bg-bg px-4 md:static md:mx-0 md:border-b-0 md:px-0"
+      >
         {categories.map((c) => {
           const h = c.weapons.filter((w) => owned.has(w.id)).length;
           const done = h === c.weapons.length;
@@ -75,7 +80,7 @@ export function Toolbar({ query, onQuery, status, onStatus, source, onSource, ca
             <a
               key={c.id}
               href={`#${c.id}`}
-              className={`flex-none border-b-2 border-transparent px-2 py-1.5 font-display text-[15px] font-semibold hover:border-line hover:text-text ${done ? "text-cyan" : "text-muted"}`}
+              className={`flex-none border-b-2 border-transparent px-2.5 py-2.5 md:px-2 md:py-1.5 font-display text-[15px] font-semibold hover:border-line hover:text-text ${done ? "text-cyan" : "text-muted"}`}
             >
               {c.label} {h}/{c.weapons.length}
             </a>

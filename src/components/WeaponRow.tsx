@@ -15,9 +15,9 @@ interface WeaponRowProps {
 
 export const WeaponRow = memo(function WeaponRow({ weapon: w, checked, onToggle }: WeaponRowProps) {
   return (
-    <li className="border-line not-first:border-t">
+    <li className="bg-surface">
       <label
-        className={`grid cursor-pointer grid-cols-[auto_1fr] gap-3 border-l-[3px] px-3.5 py-3 hover:bg-cyan-soft ${checked ? "border-cyan" : "border-transparent"}`}
+        className={`grid cursor-pointer grid-cols-[auto_1fr] gap-3 border-l-[3px] px-3.5 py-3.5 hover:bg-cyan-soft active:bg-cyan-soft md:py-3 ${checked ? "border-cyan" : "border-transparent"}`}
       >
         <input
           type="checkbox"
@@ -26,7 +26,7 @@ export const WeaponRow = memo(function WeaponRow({ weapon: w, checked, onToggle 
           className="peer sr-only"
         />
         <span
-          className={`clip-box mt-0.5 grid size-[22px] place-items-center border-2 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cyan ${checked ? "border-cyan bg-cyan" : "border-muted"}`}
+          className={`clip-box mt-0.5 grid size-6 md:size-[22px] place-items-center border-2 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cyan ${checked ? "border-cyan bg-cyan" : "border-muted"}`}
         >
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.6" className={`size-3.5 text-bg ${checked ? "opacity-100" : "opacity-0"}`}>
             <path d="M3 8.5l3.2 3L13 4.5" />

@@ -46,10 +46,10 @@ export function Footer({ exportCode, importCode, reset }: FooterProps) {
     setMsg("Progress reset.");
   };
 
-  const btn = "cursor-pointer rounded-sm border bg-surface px-3 py-2 font-semibold";
+  const btn = "min-h-11 cursor-pointer rounded-sm border bg-surface px-3 py-2 font-semibold md:min-h-0";
 
   return (
-    <footer className="mt-10 mb-12 border-t border-line pt-4.5 text-sm text-muted">
+    <footer className="mt-10 mb-[max(3rem,env(safe-area-inset-bottom))] border-t border-line pt-4.5 text-sm text-muted">
       <div className="mb-3.5 flex flex-wrap gap-2">
         <button type="button" onClick={toggleBackup} className={`${btn} border-line text-text`}>
           Back up or restore
@@ -68,7 +68,7 @@ export function Footer({ exportCode, importCode, reset }: FooterProps) {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             spellCheck={false}
-            className="mt-1 min-h-20 w-full resize-y border border-line bg-surface p-2.5 font-mono text-sm text-text"
+            className="mt-1 min-h-20 w-full resize-y border border-line bg-surface p-2.5 font-mono text-base text-text md:text-sm"
           />
           <button type="button" onClick={restore} className={`${btn} mt-2 border-line text-text`}>
             Restore from code
